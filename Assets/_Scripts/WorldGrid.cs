@@ -1,8 +1,9 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class WorldGrid : MonoBehaviour
 {
@@ -17,11 +18,18 @@ public class WorldGrid : MonoBehaviour
     Vector2 Offset;
     Texture2D HeightMap;
     public int HmapX, HmapY;
+    public static Dictionary<Vector3, PathNode> PathMap;
+    public Action OnWorldInit;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        Instance = this;
+        PathMap = new Dictionary<Vector3, PathNode>();
         GenerateHeight();
         InitWorld();
     }
@@ -33,18 +41,26 @@ public class WorldGrid : MonoBehaviour
         {
             for (int z = 0; z < Width; z++)
             {
-                var height = Vector3.up * MapHeight * SampleStepped(x, z);//Mathf.PerlinNoise(x / Width * Scale + Offset, z  / Length * Scale + Offset);
-                var newPos = new Vector3Int(x, z);
+                var gridCoords = new Vector3Int(x, z,0);
+                var height = Vector3.up * MapHeight * SampleStepped(x, z);
+                var worldPos = NavGrid.CellToWorld(gridCoords) + height / 2;
                 //FogGrid.SetTile(newPos, FogTile);
-                //NavGrid.SetTile(newPos, Tiles[0]);
-                //NavGrid.GetTile<Tile>(newPos).gameObject.transform.Translate(height);
                 var index = GetTileByHeight(height.y);
-                Instantiate(TilePrefabs[index], NavGrid.CellToWorld(newPos) + height, Quaternion.identity, transform);
-                
+                var tile = Instantiate(TilePrefabs[index], worldPos, Quaternion.identity, transform).GetComponent<PathNode>();
+                tile.name = $"Hex {gridCoords}";
+                tile.GridCoords = gridCoords;
+                tile.WorldCoords = worldPos;
+                if (index == TilePrefabs.Count -1) tile.Walkable = false;
+                PathMap.Add(gridCoords, tile);
             }
         }
-        NavGrid.RefreshAllTiles();
+
+        foreach (var tile in PathMap)
+        {
+            tile.Value.CacheNeighbors();
+        }
         FogGrid.RefreshAllTiles();
+        OnWorldInit?.Invoke();
     }
 
     void GenerateHeight()
@@ -82,8 +98,16 @@ public class WorldGrid : MonoBehaviour
 
     int GetTileByHeight(float height)
     {
-
         return Mathf.Clamp(Mathf.RoundToInt(height), 0, TilePrefabs.Count - 1);
+    }
+
+    public Vector3 GetTilePos(Vector3 Worldpos)
+    {
+        var gridPos = NavGrid.WorldToCell(Worldpos);
+        var tilePos = NavGrid.CellToWorld(gridPos);
+        var height = SampleStepped(gridPos.x, gridPos.y) * MapHeight;
+        return new Vector3(tilePos.x, height / 2, tilePos.z);
+       
     }
     // Update is called once per frame
     void Update()

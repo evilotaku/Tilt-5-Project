@@ -179,6 +179,8 @@ GameObject:
   - component: {fileID: 4857468731806058726}
   - component: {fileID: 8414669716006700867}
   - component: {fileID: 5990384332903150473}
+  - component: {fileID: 5742794793108018450}
+  - component: {fileID: 5766117128746203920}
   m_Layer: 0
   m_Name: grass_hill
   m_TagString: Untagged
@@ -257,6 +259,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5742794793108018450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5197966233134060124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7749d8664e24fe14cbf362688bf7c40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridCoords: {x: 0, y: 0, z: 0}
+  WorldCoords: {x: 0, y: 0, z: 0}
+  NavGrid: {fileID: 0}
+  Neighbors: []
+  Walkable: 1
+--- !u!64 &5766117128746203920
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5197966233134060124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1223088035735100204, guid: 5cd31e1e1d536224ca9a01f782946dff, type: 3}
 --- !u!1 &6740201256778523932
 GameObject:
   m_ObjectHideFlags: 0

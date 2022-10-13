@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5699055822926975861}
   - component: {fileID: 8698920960144710864}
   - component: {fileID: 6871421900156889114}
+  - component: {fileID: 714743549349559113}
+  - component: {fileID: -1210363046018906092}
   m_Layer: 0
   m_Name: dirt
   m_TagString: Untagged
@@ -83,3 +85,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &714743549349559113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4926038316452628943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7749d8664e24fe14cbf362688bf7c40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridCoords: {x: 0, y: 0, z: 0}
+  WorldCoords: {x: 0, y: 0, z: 0}
+  NavGrid: {fileID: 0}
+  Neighbors: []
+  Walkable: 1
+--- !u!64 &-1210363046018906092
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4926038316452628943}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6202518890732439607, guid: e20caec4387d0dc47b7f5466d28df514, type: 3}

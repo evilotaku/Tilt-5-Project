@@ -426,6 +426,8 @@ GameObject:
   - component: {fileID: 4833837032446676291}
   - component: {fileID: 8411288961327284966}
   - component: {fileID: 6007258706469926444}
+  - component: {fileID: 4396664676606983357}
+  - component: {fileID: -5024970708380452239}
   m_Layer: 0
   m_Name: water_rocks
   m_TagString: Untagged
@@ -507,6 +509,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4396664676606983357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214866582880950265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7749d8664e24fe14cbf362688bf7c40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridCoords: {x: 0, y: 0, z: 0}
+  WorldCoords: {x: 0, y: 0, z: 0}
+  NavGrid: {fileID: 0}
+  Neighbors: []
+  Walkable: 1
+--- !u!64 &-5024970708380452239
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214866582880950265}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1285196054944692571, guid: ab7adcf95d227d541a9058b79d1d28d7, type: 3}
 --- !u!1 &6534488964808887855
 GameObject:
   m_ObjectHideFlags: 0
